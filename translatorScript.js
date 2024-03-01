@@ -21,7 +21,7 @@ window.onload = async () => {
       headers: {
         "content-type": "application/x-www-form-urlencoded",
         "Accept-Encoding": "application/gzip",
-        "X-RapidAPI-Key": "75bbf87086msha9b2c4937cedabap194c28jsn0d1de7105c73",
+        "X-RapidAPI-Key": null, //personal key avaiable on page: https://google-translate1.p.rapidapi.com
         "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
       },
       body: new URLSearchParams({
@@ -36,13 +36,14 @@ window.onload = async () => {
       const result = await response.text()
       const jsonResult = JSON.parse(result)
       const translatedText = jsonResult.data.translations[0].translatedText
-      console.log(translatedText)
       textArray2.value = translatedText
     } catch (error) {
-      console.error(error)
+      console.log(error)
+      textArray2.value =
+        "Something gone wrong. Check your Subscription or network connection"
     }
   }
-  textArray1.addEventListener("change", () => {
+  textArray1.addEventListener("input", () => {
     translate()
   })
   document.getElementById("swap-btn").addEventListener("click", () => {
